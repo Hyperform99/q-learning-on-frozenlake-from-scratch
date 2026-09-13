@@ -37,8 +37,23 @@ def sample_random_action(action_space):
 def should_explore(epsilon, rng):
     return(epsilon > rng.random())
 
-# Step 6 - epsilon_greedy_action (not yet solved)
-# TODO: implement
+# Step 6 - epsilon_greedy_action
+import numpy as np, random as rnd
+
+def epsilon_greedy_action(q_table, state, epsilon, action_space, rng):
+    if should_explore(epsilon, rng):
+        return(sample_random_action(action_space))
+    else:
+        maximum = max(q_table[state])
+        indexes = []
+        index = -1
+        for i in q_table[state]:
+            index += 1
+            if i == maximum:
+                indexes.append(index)
+        return(rnd.choice(indexes))
+#Get all indexes
+#Select a random one
 
 # Step 7 - decay_epsilon (not yet solved)
 # TODO: implement
